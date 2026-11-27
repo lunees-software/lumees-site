@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lunees | Em desenvolvimento</title>
+    <meta name="description" content="O novo site da Lunees está em desenvolvimento. Volte em breve." />
+    <meta name="theme-color" content="#101216" />
+    <meta property="og:title" content="Lunees | Em desenvolvimento" />
+    <meta property="og:description" content="O novo site da Lunees está em desenvolvimento. Volte em breve." />
+    <meta property="og:type" content="website" />
+    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/assets/favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
+    <link rel="preload" href="/assets/fonts/unbounded-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/assets/fonts/exo-2-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <style>
+      @font-face {
+        font-family: "Unbounded";
+        font-weight: 200 900;
+        font-display: swap;
+        src: url("/assets/fonts/unbounded-latin-ext.woff2") format("woff2");
+        unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+      }
+      @font-face {
+        font-family: "Unbounded";
+        font-weight: 200 900;
+        font-display: swap;
+        src: url("/assets/fonts/unbounded-latin.woff2") format("woff2");
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+      @font-face {
+        font-family: "Exo 2";
+        font-weight: 100 900;
+        font-display: swap;
+        src: url("/assets/fonts/exo-2-latin-ext.woff2") format("woff2");
+        unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+      }
+      @font-face {
+        font-family: "Exo 2";
+        font-weight: 100 900;
+        font-display: swap;
+        src: url("/assets/fonts/exo-2-latin.woff2") format("woff2");
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+
+      :root {
+        --obsidian: #101216;
+        --lunar: #f1f2f5;
+        --titanium: #a4aab8;
+        --violet: #8875e8;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+      }
+
+      body {
+        position: relative;
+        display: grid;
+        grid-template-rows: 1fr auto;
+        min-height: 100svh;
+        overflow: hidden;
+        background: var(--obsidian);
+        color: var(--lunar);
+        font-family: "Exo 2", system-ui, sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* Brilho violeta suave atrás do conteúdo. */
+      body::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background:
+          radial-gradient(46% 40% at 50% 46%, rgb(136 117 232 / 0.18), transparent 72%),
+          radial-gradient(30% 6% at 50% 78%, rgb(136 117 232 / 0.2), transparent 75%);
+      }
+
+      /* Linhas finas com um brilho que percorre cada uma. */
+      .lines {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding-block: 2rem;
+        pointer-events: none;
+        -webkit-mask-image: radial-gradient(ellipse 60% 70% at 50% 50%, #000 15%, transparent 80%);
+        mask-image: radial-gradient(ellipse 60% 70% at 50% 50%, #000 15%, transparent 80%);
+      }
+
+      .lines i {
+        position: relative;
+        display: block;
+        height: 1px;
+        overflow: hidden;
+        opacity: var(--o, 0.8);
+        background: linear-gradient(90deg, transparent, rgb(136 117 232 / 0.18) 12%, rgb(136 117 232 / 0.18) 88%, transparent);
+      }
+
+      .lines i::after {
+        content: "";
+        position: absolute;
+        inset: 0 auto 0 0;
+        width: var(--w, 220px);
+        background: linear-gradient(90deg, transparent, rgb(176 156 255 / 0.8), transparent);
+        transform: translateX(-100%);
+        animation: pulse var(--d, 12s) linear var(--l, 0s) infinite;
+      }
+
+      @keyframes pulse {
+        to {
+          transform: translateX(100vw);
+        }
+      }
+
+      main {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1.75rem;
+        padding: 2rem 1.5rem;
+        text-align: center;
+      }
+
+      .logo {
+        width: clamp(150px, 22vw, 210px);
+        height: auto;
+        margin-bottom: 0.5rem;
+      }
+
+      .status {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        margin: 0;
+        padding: 0.5rem 1rem;
+        border: 1px solid rgb(136 117 232 / 0.35);
+        border-radius: 999px;
+        background: rgb(136 117 232 / 0.08);
+        color: var(--titanium);
+        font-size: 0.75rem;
+        font-weight: 500;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+
+      .status::before {
+        content: "";
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--violet);
+        box-shadow: 0 0 0 0 rgb(136 117 232 / 0.6);
+        animation: ping 2.2s ease-out infinite;
+      }
+
+      @keyframes ping {
+        to {
+          box-shadow: 0 0 0 10px rgb(136 117 232 / 0);
+        }
+      }
+
+      h1 {
+        max-width: 16ch;
+        margin: 0;
+        font-family: "Unbounded", "Exo 2", sans-serif;
+        font-size: clamp(2rem, 6vw, 4rem);
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        line-height: 1.08;
+      }
+
+      h1 span {
+        color: var(--violet);
+      }
+
+      p.lede {
+        max-width: 38ch;
+        margin: 0;
+        color: var(--titanium);
+        font-size: clamp(1rem, 1.6vw, 1.2rem);
+        line-height: 1.6;
+      }
+
+      footer {
+        position: relative;
+        z-index: 1;
+        padding: 1.25rem 1.5rem 1.75rem;
+        color: rgb(164 170 184 / 0.6);
+        font-size: 0.75rem;
+        letter-spacing: 0.14em;
+        text-align: center;
+        text-transform: uppercase;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .lines i::after {
+          animation: none;
+          opacity: 0;
+        }
+        .status::before {
+          animation: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="lines" aria-hidden="true">
+      <i style="--d: 11s; --l: -2s; --w: 240px; --o: 0.9"></i>
+      <i style="--d: 15s; --l: -9s; --w: 180px; --o: 0.6"></i>
+      <i style="--d: 9s; --l: -4s; --w: 300px; --o: 1"></i>
+      <i style="--d: 17s; --l: -12s; --w: 200px; --o: 0.7"></i>
+      <i style="--d: 12s; --l: -1s; --w: 260px; --o: 0.85"></i>
+      <i style="--d: 14s; --l: -7s; --w: 170px; --o: 0.55"></i>
+      <i style="--d: 10s; --l: -5s; --w: 280px; --o: 0.95"></i>
+      <i style="--d: 16s; --l: -14s; --w: 210px; --o: 0.65"></i>
+      <i style="--d: 13s; --l: -3s; --w: 250px; --o: 0.8"></i>
+      <i style="--d: 18s; --l: -10s; --w: 190px; --o: 0.6"></i>
+      <i style="--d: 11s; --l: -6s; --w: 290px; --o: 1"></i>
+      <i style="--d: 15s; --l: -11s; --w: 220px; --o: 0.7"></i>
+      <i style="--d: 12s; --l: -8s; --w: 240px; --o: 0.85"></i>
+    </div>
+
+    <main>
+      <img class="logo" src="/assets/lunees-logo.svg" alt="Lunees" width="210" height="38" />
+      <p class="status">Em desenvolvimento</p>
+      <h1>Construindo além do <span>convencional.</span></h1>
+      <p class="lede">O novo site da Lunees está a caminho. Volte em breve.</p>
+    </main>
+
+    <footer>&copy; 2026 Lunees</footer>
+  </body>
+</html>
