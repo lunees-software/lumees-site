@@ -1,5 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" role="img" aria-label="Lunees">
-<rect width="800" height="800" rx="150" fill="#101216"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="60 60 680 680" role="img" aria-label="Lunees">
   <g fill="#FFFFFF" transform="translate(-223.5 -196.5)">
     <path d="M812 371 C754 333 685 315 622 319 C535 319 455 358 397 422 C345 480 317 551 317 618 C317 706 364 784 439 841 C400 777 390 706 405 626 C422 549 464 481 526 423 C603 353 715 337 812 371 Z"/>
     <path d="M434 874 L631 562 H766 L641 770 H930 L865 874 Z"/>
