@@ -1,0 +1,114 @@
+---
+import menu from 'lucide-static/icons/menu.svg?raw';
+import close from 'lucide-static/icons/x.svg?raw';
+import Button from '../ui/Button.astro';
+import Logo from '../ui/Logo.astro';
+
+const links = [
+  { href: '#sobre', label: 'Sobre' },
+  { href: '#solucoes', label: 'Soluções' },
+  { href: '#projetos', label: 'Projetos' },
+  { href: '#equipe', label: 'Equipe' },
+];
+---
+
+<header class="site-header" data-header data-animate="nav">
+  <div class="shell site-header__bar">
+    <a class="site-header__logo" href="/" aria-label="Lunees, página inicial">
+      <Logo />
+    </a>
+
+    <nav class="site-nav" aria-label="Principal">
+      <ul class="site-nav__list">
+        {
+          links.map((link) => (
+            <li>
+              <a class="site-nav__link" href={link.href} data-nav>
+                {link.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <div class="site-header__end">
+      <div class="site-header__cta">
+        <Button href="#contato" icon="up-right">Iniciar projeto</Button>
+      </div>
+      <button
+        class="nav-toggle"
+        type="button"
+        data-nav-toggle
+        aria-expanded="false"
+        aria-controls="nav-panel"
+        aria-label="Abrir menu"
+      >
+        <span class="nav-toggle__open" set:html={menu} />
+        <span class="nav-toggle__close" set:html={close} />
+      </button>
+    </div>
+  </div>
+
+  <div id="nav-panel" class="nav-panel" data-nav-panel hidden>
+    <nav aria-label="Principal">
+      <ul class="nav-panel__list">
+        {
+          links.map((link) => (
+            <li>
+              <a href={link.href} data-nav>
+                {link.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+    <Button href="#contato" icon="up-right">Iniciar projeto</Button>
+  </div>
+</header>
+
+<script>
+  const toggle = document.querySelector('[data-nav-toggle]');
+  const panel = document.querySelector('[data-nav-panel]');
+
+  const setOpen = (open: boolean) => {
+    if (!(toggle instanceof HTMLButtonElement) || !(panel instanceof HTMLElement)) return;
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    toggle.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
+    panel.hidden = !open;
+  };
+
+  if (toggle instanceof HTMLButtonElement && panel instanceof HTMLElement) {
+    toggle.addEventListener('click', () => {
+      setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+    });
+
+    panel.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => setOpen(false));
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') setOpen(false);
+    });
+
+    const desktop = window.matchMedia('(min-width: 1024px)');
+    desktop.addEventListener('change', () => {
+      if (desktop.matches) setOpen(false);
+    });
+  }
+
+  const syncCurrent = () => {
+    const hash = window.location.hash;
+    document.querySelectorAll<HTMLAnchorElement>('[data-nav]').forEach((link) => {
+      if (hash.length > 1 && link.getAttribute('href') === hash) {
+        link.setAttribute('aria-current', 'true');
+      } else {
+        link.removeAttribute('aria-current');
+      }
+    });
+  };
+
+  syncCurrent();
+  window.addEventListener('hashchange', syncCurrent);
+</script>

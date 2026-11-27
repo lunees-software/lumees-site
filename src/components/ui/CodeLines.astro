@@ -1,0 +1,36 @@
+---
+/**
+ * Linhas finas e contínuas no fundo da Hero, com um brilho suave que percorre cada uma
+ * (como dados passando). Puramente decorativo; valores determinísticos, sem aleatoriedade
+ * em runtime.
+ */
+const ROWS = 13;
+
+function rng(seed: number) {
+  let s = seed;
+  return () => {
+    s = (s * 1664525 + 1013904223) % 4294967296;
+    return s / 4294967296;
+  };
+}
+
+const rows = Array.from({ length: ROWS }, (_, row) => {
+  const rand = rng(row * 7919 + 13);
+  return {
+    duration: 9 + Math.floor(rand() * 9),
+    delay: -Math.floor(rand() * 18),
+    opacity: 0.55 + rand() * 0.45,
+    width: 14 + Math.floor(rand() * 14),
+  };
+});
+---
+
+<div class="code-lines" data-scroll-lines aria-hidden="true">
+  <div class="code-lines__field" data-animate="lines">
+    {
+      rows.map((row) => (
+        <div class="code-lines__row" style={`--dur:${row.duration}s;--delay:${row.delay}s;--op:${row.opacity.toFixed(2)};--w:${row.width * 14}px`} />
+      ))
+    }
+  </div>
+</div>

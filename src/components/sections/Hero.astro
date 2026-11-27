@@ -1,0 +1,56 @@
+---
+import Button from '../ui/Button.astro';
+import CodeLines from '../ui/CodeLines.astro';
+---
+
+<section class="hero" id="hero" aria-labelledby="hero-title">
+  <CodeLines />
+  <div class="shell hero__layout">
+    <div class="hero__copy">
+      <div data-scroll-early>
+        <p class="eyebrow" data-animate="eyebrow">
+          <span class="eyebrow__dot" data-dot aria-hidden="true"></span>
+          Independent Software Studio
+        </p>
+      </div>
+
+      <div data-scroll-item>
+        <h1 class="hero__title" id="hero-title" data-animate="title" aria-label="Construímos além do convencional.">
+          <span class="hero__line">Construímos </span>
+          <span class="hero__line">além do </span>
+          <span class="hero__line hero__line--accent">convencional.</span>
+        </h1>
+      </div>
+
+      <div data-scroll-item>
+        <p class="hero__lede" data-animate="lede">
+          Desenvolvemos softwares, experiências digitais e produtos que transformam ideias em soluções reais.
+        </p>
+      </div>
+
+      <div class="hero__actions" data-scroll-item>
+        <div data-animate="cta">
+          <Button href="#contato" icon="up-right">Iniciar um projeto</Button>
+        </div>
+        <div data-animate="cta">
+          <Button href="#proxima-secao" variant="secondary" icon="down">Conheça a Lunees</Button>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero__stage" aria-hidden="false">
+      <div class="hero__render" data-animate="render">
+        <img
+          data-render-img
+          src="/hero/modular-core.webp"
+          width="1254"
+          height="1254"
+          alt="Escultura modular tridimensional, o Modular Core da Lunees."
+          fetchpriority="high"
+          decoding="async"
+          draggable="false"
+        />
+      </div>
+    </div>
+  </div>
+</section>

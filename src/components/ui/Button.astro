@@ -1,0 +1,18 @@
+---
+import upRight from 'lucide-static/icons/arrow-up-right.svg?raw';
+import down from 'lucide-static/icons/arrow-down.svg?raw';
+
+interface Props {
+  href: string;
+  variant?: 'primary' | 'secondary';
+  icon?: 'up-right' | 'down';
+}
+
+const { href, variant = 'primary', icon = 'up-right' } = Astro.props;
+const glyph = icon === 'down' ? down : upRight;
+---
+
+<a class:list={['btn', variant === 'primary' ? 'btn--primary' : 'btn--secondary']} href={href}>
+  <span class="btn__label"><slot /></span>
+  <span class="btn__icon" aria-hidden="true" set:html={glyph} />
+</a>

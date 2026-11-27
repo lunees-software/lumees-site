@@ -1,0 +1,12 @@
+:root {
+  --obsidian: #101216;
+  --lunar: #F1F2F5;
+  --lunar-white: #F1F2F5;
+  --graphite: #23262E;
+  --titanium: #A4AAB8;
+  --violet: #8875E8;
+  --nav-h: 88px;
+  --container-max: 1600px;
+  --gutter: clamp(24px, 4vw, 64px);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}

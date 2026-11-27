@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/layout/Header.astro';
+import Hero from '../components/sections/Hero.astro';
+---
+
+<BaseLayout>
+  <Header />
+  <main id="conteudo">
+    <Hero />
+    <section id="proxima-secao" class="next-section" aria-label="Próxima seção">
+      <div class="shell next-section__inner">
+        <p class="next-section__label">Próxima seção (temporária)</p>
+        <div id="contato"></div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<script>
+  import { boot } from '../lib/boot';
+
+  void boot();
+</script>
